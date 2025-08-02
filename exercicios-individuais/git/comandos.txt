@@ -1,0 +1,17 @@
+1
+git init
+git config --global user.name
+git config --global user.email
+
+2
+git commit -m
+
+3
+git brach
+git switch
+git add .
+git commit
+
+5
+git remote add origin
+git clone
