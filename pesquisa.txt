@@ -1,0 +1,1 @@
+JavaScript serve principalmente para adicionar interatividade a páginas web e aplicações, permitindo a criação de funcionalidades dinâmicas e experiências de usuário mais ricas.

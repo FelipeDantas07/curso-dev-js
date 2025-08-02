@@ -1,0 +1,135 @@
+Microsoft Windows [versão 10.0.22621.5624]
+(c) Microsoft Corporation. Todos os direitos reservados.
+
+U:\Users\51447914848>cd Desktop
+
+U:\Users\51447914848\Desktop>projeto_responsivo
+'projeto_responsivo' não é reconhecido como um comando interno
+ou externo, um programa operável ou um arquivo em lotes.
+
+U:\Users\51447914848\Desktop>md projeto_responsivo
+
+U:\Users\51447914848\Desktop>cd projeto_responsivo
+
+U:\Users\51447914848\Desktop\projeto_responsivo>md public
+
+U:\Users\51447914848\Desktop\projeto_responsivo>md src
+
+U:\Users\51447914848\Desktop\projeto_responsivo>md docs
+
+U:\Users\51447914848\Desktop\projeto_responsivo>cd public
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public>md medida
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public>md js
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public>md css
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public>md html
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public>medida.txt > media.txt
+'medida.txt' não é reconhecido como um comando interno
+ou externo, um programa operável ou um arquivo em lotes.
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public> rename medida.ext media.ext
+O sistema não pode encontrar o arquivo especificado.
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public>cd medida
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\medida>dir
+ O volume na unidade U é Users
+ O Número de Série do Volume é EA9A-2F78
+
+ Pasta de U:\Users\51447914848\Desktop\projeto_responsivo\public\medida
+
+26/07/2025  09:24    <DIR>          .
+26/07/2025  09:28    <DIR>          ..
+               0 arquivo(s)              0 bytes
+               2 pasta(s)   845.939.318.784 bytes disponíveis
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\medida>cd ..
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public> cd html
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\html>echo > home.html
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\html>cd..
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public>cd..
+
+U:\Users\51447914848\Desktop\projeto_responsivo>cd public
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public>cd css
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\css>echo > theme.css
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\css>echo > theme.css body { margin: 0; padding: 0; backgroud-color: lightgray: }
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\css>cd..
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public>cd medida
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\medida>md imagens
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\medida>md fontes
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\medida>cd..
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public>cd..
+
+U:\Users\51447914848\Desktop\projeto_responsivo>cd docs
+
+U:\Users\51447914848\Desktop\projeto_responsivo\docs>copy ..\public\css\theme.css .
+        1 arquivo(s) copiado(s).
+
+U:\Users\51447914848\Desktop\projeto_responsivo\docs>cd..
+
+U:\Users\51447914848\Desktop\projeto_responsivo>cd public
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public>cd js
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\js> echo > responsivo.js console.log("Site responsivo pronto!")
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\js>echo > util.log("Utilitário carregados!")
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\js>util.js console.log("Utilitário carregados!")
+'util.js' não é reconhecido como um comando interno
+ou externo, um programa operável ou um arquivo em lotes.
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\js>utils.js console.log("Utilitário carregados!")
+'utils.js' não é reconhecido como um comando interno
+ou externo, um programa operável ou um arquivo em lotes.
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\js>rename util.log.ext helpers.js
+O sistema não pode encontrar o arquivo especificado.
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\js>echo utils.js console.log("Utilitário carregados!")
+utils.js console.log("Utilitário carregados!")
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\js>echo > utils.js console.log("Utilitário carregados!")
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\js>del "util.log(Utilitário carregados!)"
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\js>rename util.js helpers.js
+O sistema não pode encontrar o arquivo especificado.
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\js>rename utils.js helpers.js
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\js>cd..
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public>cd..
+
+U:\Users\51447914848\Desktop\projeto_responsivo>cd docs
+
+U:\Users\51447914848\Desktop\projeto_responsivo\docs>del theme.css
+
+U:\Users\51447914848\Desktop\projeto_responsivo\docs>cd html
+O sistema não pode encontrar o caminho especificado.
+
+U:\Users\51447914848\Desktop\projeto_responsivo\docs>cd..
+
+U:\Users\51447914848\Desktop\projeto_responsivo>cd public/html
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\html>notepad home.html
+
+U:\Users\51447914848\Desktop\projeto_responsivo\public\html>
