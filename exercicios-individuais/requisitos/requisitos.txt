@@ -1,0 +1,31 @@
+Atividade: Definição de Requisitos para um Sistema de Autenticação
+Objetivo:
+O objetivo desta atividade é desenvolver a habilidade de identificar e definir requisitos funcionais e não funcionais para um sistema de autenticação de usuários.
+
+Descrição da Atividade:
+Uma empresa precisa de um sistema de autenticação de usuários, que inclui três funcionalidades principais: login, cadastro de novos usuários e recuperação de senha. Para isso, sua equipe foi encarregada de definir os requisitos funcionais e não funcionais do sistema.
+
+Tarefa:
+Com base em sua experiência utilizando aplicativos e websites, liste:
+Requisitos Funcionais (RF): Definem o que o sistema deve fazer.
+Requisitos Não Funcionais (RNF): Definem restrições de qualidade, desempenho e segurança.
+Regras de Negócio (RN): Definem as regras da empresa.
+
+RF: 
+Deve conter a tela de login
+Ter a tela de "esquici minha senha" 
+Ter a tela de "Não tenho uma conta" 
+
+
+RNF:
+Conter LGPD 
+Funcionamento 24/7
+acessebilidae
+backup
+acessibilidade
+
+RN:
+Se errar a senha mais de 3 vez é bloqeuado por um determinado tempo
+A senha não pode ser muito fraca 
+Não pode usuar um nome que já existe dentro do sait
+Apenas os funcionarios da empresa podem acessar a sait
