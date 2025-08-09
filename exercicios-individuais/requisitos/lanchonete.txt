@@ -1,0 +1,24 @@
+Sistema de Pedidos Online da Hamburgueria
+Uma pequena lanchonete quer criar um sistema simples de pedidos online. O cliente deve poder visualizar o cardápio, montar seu pedido (escolher lanche, bebida e adicionais), informar nome e forma de pagamento, além de acompanhar o status do pedido. O atendente da lanchonete poderá visualizar os pedidos e alterar o status conforme o andamento (ex: recebido, em preparo, pronto).
+
+RF:
+Login
+Cadastro de usuario
+Filtro(Se vai querer comida, adicionais ou bebida)
+Forma de pagamento(dinheiro ou cartão)
+Confirmar o endereço
+Tempo aproximado da entrega
+Cancelar o pedido
+Ter a confimação da entrega
+Avaliação do pedido
+
+RNF:
+LGPD
+Backup
+Criptografia
+Atender 100 requisições por X tempo
+
+RN:
+Se cancelar varias vezes o pedido será adicionado um juros de 5%
+Concordar com os termos da lanchonete
+O clinte não pode mudar o endereço depois que já fez o pedido
