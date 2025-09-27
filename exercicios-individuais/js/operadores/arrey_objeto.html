@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+ <p>Aperte F12 para ver o conteudo</p>
+
+  <script>
+
+    const playlist = ["Given up", "Snuff", "Blackened"]
+    console.log(playlist[0]);
+
+    playlist.push("Gold");
+    console.log(playlist);
+
+    delete playlist[3];
+    console.log(playlist);
+
+    console.log(playlist.length);
+
+    //Exercicio 2
+
+    const filme = {
+        titulo : "Homem Aranha",
+        ano : "2002",
+        diretor : "Sam Raimi",
+
+    } 
+
+    console.log(`O filme ${filme.titulo}, dirigido por ${filme.diretor}, foi lançado em ${filme.ano}.`);
+    
+    filme.personagens = ["Peter", "Norman Osborne", "Harry Osborne"];
+
+    console.log(filme.personagens[0]);
+    console.log(filme);
+
+
+
+
+  </script>
+
+
+</body>
+</html>
