@@ -1,19 +1,28 @@
+document.querySelector('.seu-nome').textContent = "Geovana Moreira Bicalho";
+
+
 let usuarios = JSON.parse(localStorage.getItem("cadastro_usuarios")) || [];
 
 //Telas
-const telaLista = document.querySelector("#tela-lista");
-const telaCadastro = document.querySelector("#tela-cadastro");
+const telaLista = document.querySelector
+("#tela-lista");
+const telaCadastro = document.querySelector
+("#tela-cadastro");
+
 
 //Botões
 const btnAdicionar = document.querySelector("#btn-adicionar");
 const btnVoltarLista = document.querySelector("#btn-voltar-lista");
+const btnDownload = document.querySelector("#btn-download");
+const btnUpload = document.querySelector("#btn-upload");
+const inputUpload = document.querySelector("#input-upload")
 
-//Inputs
+// Inputs
 const inputId = document.querySelector("#user-id");
 const inputNome = document.querySelector("#user-nome");
 const inputSobrenome = document.querySelector("#user-sobrenome");
 const inputEmail = document.querySelector("#user-email");
-const inputCep = document.querySelector("#user-cep");
+const inputCEP = document.querySelector("#user-cep");
 const inputRua = document.querySelector("#user-rua");
 const inputNumero = document.querySelector("#user-numero");
 const inputComplemento = document.querySelector("#user-complemento");
@@ -25,22 +34,39 @@ const inputObs = document.querySelector("#user-obs");
 const form = document.querySelector("#user-form");
 const tabelaCorpo = document.querySelector("#user-table-body");
 
+let idEmEdicao = null;
 
+const btnCep = document.querySelector("#btn-buscar-cep");
+const inputBusca = document.querySelector("#user-busca");
+
+//modal
+const modalDetalhes = document.querySelector("#detalhes-modal");
+const modalNome = document.querySelector("#modal-nome");
+const modalEmail = document.querySelector("#modal-email");
+const modalEndereco = document.querySelector("#modal-endereco-completo");
+const modalObs = document.querySelector("#modal-obs");
+const modalBtnEditar = document.querySelector("#modal-btn-editar");
+const modalBtnExcluir = document.querySelector("#modal-btn-excluir");
+
+const modal = new bootstrap.Modal(modalDetalhes);
+
+//Funções
 function mostrarTelaLista(){
     telaLista.classList.remove("d-none");
     telaCadastro.classList.add("d-none");
     renderizarTabela();
+
 }
 
 function mostrarTelaCadastro(){
     telaCadastro.classList.remove("d-none");
     telaLista.classList.add("d-none");
 }
-
 function salvarUsuario(){
     const id = Number(inputId.value);
     const nome = inputNome.value;
     const sobrenome = inputSobrenome.value;
+    const cep = inputCEP.value;
     const email = inputEmail.value;
     const rua = inputRua.value;
     const numero = inputNumero.value;
@@ -49,68 +75,251 @@ function salvarUsuario(){
     const cidade = inputCidade.value;
     const estado = inputEstado.value;
     const obs = inputObs.value;
-
+    
     const usuario = {
-        id: id || Date.now(), nome, sobrenome, email, rua, numero, complemento, bairro, cidade, estado, obs
+        id: id || Date.now(), nome, sobrenome, email, cep,
+        rua, numero, complemento, bairro, cidade, estado, obs
+    
+    }
+    if(idEmEdicao){
+        
+        const index = usuarios.findIndex(user => user.id === idEmEdicao); // index = 0; index = 2
+        if (index !== -1){
+            usuarios[index] = usuario;
+        }
+
+    }else{
+        usuarios.push(usuario);
     }
 
-    usuarios.push(usuario);
-    salvarNoStorage();
+    salvarStorage();
+    form.reset();
+    mostrarTelaLista();
 }
 
-function salvarNoStorage(){
-    localStorage.setItem("cadastro_usuarios",JSON.stringify(usuarios));
+
+function salvarStorage(){
+    localStorage.setItem("cadastro_usuarios", JSON.stringify(usuarios));
+
 }
 
-function renderizarTabela(){
+function renderizarTabela(usuariosFiltrados = usuarios){
     tabelaCorpo.innerHTML = "";
-    usuarios.forEach(user => {
+    usuariosFiltrados.forEach(user => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
             <td>${user.nome}</td>
             <td>${user.sobrenome}</td>
             <td>${user.email}</td>
             <td>
-                <button type="button" class="btn btn-sm btn-warning" data-id="${user.id}">Editar</button>
-
+                <button type="button" class="btn btn-sm btn-warning"  data-id="${user.id}" >Editar</button>
                 <button type="button" class="btn btn-sm btn-danger" data-id="${user.id}">Excluir</button>
+                <button type="button" class="btn btn-sm btn-primary"  data-id="${user.id}" >Mostrar Detalhes</button>
             </td>
         `;
 
         tabelaCorpo.appendChild(tr);
     });
-
 }
 
 function excluirUsuario(id){
     if (confirm("Você deseja realmente excluir esse usuário?")){
         console.log(id);
         usuarios = usuarios.filter(user => user.id !== id);
-        salvarNoStorage();
+        salvarStorage();
         renderizarTabela();
     }
 }
 
+function editarUsuario(id){
+
+    const usuario = usuarios.find(user => user.id === id);
+
+    if (!usuario) return; 
+
+    idEmEdicao = id;
+
+    inputId.value = usuario.id;
+    inputNome.value = usuario.nome;
+    inputSobrenome.value = usuario.sobrenome;
+    inputEmail.value = usuario.email;
+    inputCEP.value = usuario.cep;
+    inputRua.value = usuario.rua;
+    inputNumero.value = usuario.numero;
+    inputComplemento.value = usuario.complemento;
+    inputBairro.value = usuario.bairro;
+    inputCidade.value = usuario.cidade;
+    inputEstado.value = usuario.estado;
+    inputObs.value = usuario.obs;
+
+    mostrarTelaCadastro()
+    
+}
+
+async function buscarCep(){
+
+    const cep = inputCEP.value.replace(/\D/g,"");
+
+    if (cep.length === 8){
+
+    const resposta = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+
+    const dados = await resposta.json();
+
+    //console.log(dados);
+
+    if (!dados.erro){
+        inputCEP.value = dados.cep;
+        inputRua.value = dados.logradouro;
+        inputComplemento.value = dados.complemento;
+        inputBairro.value = dados.bairro;
+        inputCidade.value = dados.localidade;
+        inputEstado.value = dados.estado;
+    }else{
+        alert("CEP Inválido, tente novamente!");
+    }
+
+    }else{
+        alert("Verifique a quantidade de números digitados!");
+    }
+
+}
+
+function buscarUsuario(){
+    // toLowerCase => trasforma tudo em minusculo
+    // trim => remove todos os espaços dos extremos
+    const conteudo = inputBusca.value.toLowerCase().trim();
+
+    if (!conteudo){
+        renderizarTabela();
+        return;
+    }
+
+
+    const usuariosFiltrados = usuarios.filter(user => {
+        return user.nome.toLowerCase().trim().includes(conteudo) || 
+        user.sobrenome.toLowerCase().trim().includes(conteudo) || 
+        user.email.toLowerCase().trim().includes(conteudo);
+    });
+
+    console.log(usuariosFiltrados);
+
+    renderizarTabela(usuariosFiltrados);
+
+}
+function downloadArquivo(){
+    const dados = JSON.stringify(usuarios);
+    const arquivo = new Blob([dados], {type: "application/json"});
+    const url = URL.createObjectURL(arquivo);
+    const linkDowload = document.createElement("a");
+    linkDowload.href = url;
+    linkDowload.download = "usuarios.json";
+    linkDowload.click();
+    URL.revokeObjectURL(url);
+
+
+}
+function uploadArquivo(event){
+    const arquivo = event.target.files[0];
+
+    if(!arquivo) return;
+
+    const leitor = new FileReader();
+
+    leitor.onload = function(e){
+
+        const conteudoArquivo = e.target.result;
+
+        const usuariosImportados = JSON.parse(conteudoArquivo);
+
+        if (!Array.isArray(usuariosImportados)){
+            alert("Arquivo não é um array valido!")
+            return;
+        }
+
+        if (confirm("Deseja realmente substituir as informações dos usuários?")){
+            usuarios = usuariosImportados;
+            salvarStorage();
+            renderizarTabela();
+            alert("Usuários importados com sucesso!");
+            inputUpload.value = "";
+            
+        }
+    }
+
+    leitor.readAsText(arquivo);
+}
+
+function mostrarDetalhesUsuarios(id){
+    const user = usuarios.find(u => u.id === id);
+
+    if (!user) return;
+
+    modalNome.textContent = `${user.nome} ${user.sobrenome}`;
+    modalEmail.textContent = user.email;
+    const endereco = [user.rua, user.numero, user.complemento, user.bairro, user.cidade, user.estado, user.cep].filter(Boolean).join(", ");
+
+    modalEndereco.textContent = endereco;
+    modalObs.textContent = user.obs;
+
+
+    modalBtnEditar.dataset.id = user.id;
+    modalBtnExcluir.dataset.id = user.id;
+
+    modal.show();
+}
+
+
+
 function inicializar(){
-    btnAdicionar.addEventListener("click",mostrarTelaCadastro);
-    btnVoltarLista.addEventListener("click",mostrarTelaLista);
+    btnAdicionar.addEventListener("click", mostrarTelaCadastro);
+    btnVoltarLista.addEventListener("click", mostrarTelaLista);
+    btnCep.addEventListener("click",buscarCep);
+
     form.addEventListener("submit", salvarUsuario);
     mostrarTelaLista();
 
-    tabelaCorpo.addEventListener("click", (event) => {
+    inputBusca.addEventListener("input", buscarUsuario);
+
+    btnDownload.addEventListener("click", downloadArquivo);
+    btnUpload.addEventListener("click", () => inputUpload.click());
+    inputUpload.addEventListener("change", uploadArquivo);
+
+
+    tabelaCorpo.addEventListener("click",(event) => {
         const target = event.target.closest("button");
         if(!target) return
-        
+
         const id = Number(target.dataset.id);
-        
+
         if (isNaN(id)) return
 
         if (target.classList.contains("btn-warning")){
             editarUsuario(id);
         } else if (target.classList.contains("btn-danger")){
             excluirUsuario(id);
-        }        
+        }
+        else if (target.classList.contains("btn-primary")){
+            mostrarDetalhesUsuarios(id);
+        }
+    })
+
+    modalDetalhes.addEventListener("click",(event) => {
+        const target = event.target.closest("button");
+        if(!target) return
+
+        const id = Number(target.dataset.id);
+
+        if (isNaN(id)) return
+
+        if (target.classList.contains("btn-warning")){
+            modal.hide();
+            editarUsuario(id);
+        } else if (target.classList.contains("btn-danger")){
+            excluirUsuario(id);
+            modal.hide();
+        }
     })
 }
 
-inicializar();
+inicializar()
